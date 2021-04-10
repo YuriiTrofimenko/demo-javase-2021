@@ -241,7 +241,7 @@ public class Main {
         // например, 2 + 3, в зависимости от выбора номера действия пользователем
         // * добавить ввод пользователем чисел для расчета, например, a и b
         
-        /* BufferedReader we = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader we = new BufferedReader(new InputStreamReader(System.in));
             double a = 0;
             boolean correctAValueFetched = false;
             do {
@@ -260,8 +260,19 @@ public class Main {
             double b = Double.parseDouble(we.readLine());
             
             Scanner sc = new Scanner(System.in);
-            System.out.println("ВВедите цифру от 1 до 4: ");
-            Integer userInputInteger = sc.nextInt();
+            Integer userInputInteger = null;
+            boolean correctUserInputIntegerValueFetched = false;
+            do {
+                try {
+                    System.out.println("ВВедите цифру от 1 до 4: ");
+                    userInputInteger = Integer.parseInt(sc.nextLine());
+                    if (userInputInteger >= 1 && userInputInteger <= 4) {
+                        correctUserInputIntegerValueFetched = true;
+                    }
+                 } catch (NumberFormatException e) {
+                     
+                 }
+            } while (!correctUserInputIntegerValueFetched);
 
             switch (userInputInteger) {
                 case 1: {
@@ -281,17 +292,17 @@ public class Main {
                     System.out.println(a / b);
                     break;
                 }
-            } */
+            }
         
             // Генерация целых чисел из заданого интервала
-            int a = 10;
+            /* int a = 10;
             int b = 20;
             int size = b - a + 1;
             int[] integers = new int[size]; // создали массив с индексами от 0 до 9
             
             integers[0] = 10;
             integers[2] = 10; // в массиве integers найти позицию под индексом 2
-            integers[3] = 101;
+            integers[3] = 101; */
             // и записать в нее значение 10
             
             // System.out.println(integers[2]);
@@ -320,7 +331,7 @@ public class Main {
                 System.err.println(currentInt);
             } */
             
-            int counter = 0; 
+            /* int counter = 0; 
             for (int i = a; i <= b; i++) {
                 // System.out.println(i);
                 integers[counter] = i;
@@ -329,7 +340,7 @@ public class Main {
             System.out.println("...");
             for (int currentInt : integers) {
                 System.err.println(currentInt);
-            }
+            } */
         }
 
 }
