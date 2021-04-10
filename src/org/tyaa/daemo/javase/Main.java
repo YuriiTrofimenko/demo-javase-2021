@@ -241,7 +241,7 @@ public class Main {
         // например, 2 + 3, в зависимости от выбора номера действия пользователем
         // * добавить ввод пользователем чисел для расчета, например, a и b
         
-        BufferedReader we = new BufferedReader(new InputStreamReader(System.in));
+        /* BufferedReader we = new BufferedReader(new InputStreamReader(System.in));
             double a = 0;
             boolean correctAValueFetched = false;
             do {
@@ -252,11 +252,11 @@ public class Main {
                  } catch (NumberFormatException e) {
                      
                  }
-            } while (!correctAValueFetched);
+            } while (!correctAValueFetched); */
         
             // по примеру с переменной a сделать бесконечный опрос пользователя,
             // пока он не введет правильные значения b и userInputInteger
-            System.out.print("Введи переменную б ");
+            /* System.out.print("Введи переменную б ");
             double b = Double.parseDouble(we.readLine());
             
             Scanner sc = new Scanner(System.in);
@@ -292,7 +292,7 @@ public class Main {
                     System.out.println(a / b);
                     break;
                 }
-            }
+            } */
         
             // Генерация целых чисел из заданого интервала
             /* int a = 10;
@@ -341,6 +341,93 @@ public class Main {
             for (int currentInt : integers) {
                 System.err.println(currentInt);
             } */
+            
+            
+            /* 2D Arrays */
+            
+            /*
+            
+            1 0
+            0 1
+            
+            */
+            
+            /* // создание массива с двумя вложенными массивами с данными внутри
+            int[][] tableArray1 = {{1, 0}, {0, 1}};
+            // перебор ссылок на все подмассивы
+            for(int[] rowArray : tableArray1) {
+                // получаем очередной подмассив
+                // перебор всех значений текущего подмассива
+                for(int value : rowArray) {
+                    // вывод текущего значения без перхода на следующую строку
+                    System.out.print(value + " ");
+                }
+                // когда все значения текущего подмассива выведены в одну строку -
+                // переходим на следующую
+                System.out.println();
+            } */
+            
+            
+            // String placeholder = "\t";
+            // String placeholder = "     ";
+            // i - номера строк
+            /* for (int i = 0; i < 11; i++) {
+                // j - номера колонок (ячеек в строке)
+                for (int j = 0; j < 11; j++) {
+                    // если номер строки - первый (индекс = 0) -
+                    // выводим номер колонки (ячейки)
+                    if (i == 0) {
+                        // System.out.print(j + placeholder);
+                        System.out.printf("%4d", j);
+                    } else if (j == 0) {
+                        // System.out.print(i + placeholder);
+                        System.out.printf("%4d", i);
+                    } else {
+                        // System.out.print((i * j) + placeholder);
+                        System.out.printf("%4d", i * j);
+                    }
+                }
+                // когда вложенным циклом завершен вывод одной строки -
+                // // переходим на следующую
+                System.out.println();
+            } */
+            
+            // Table v2
+            // создание пустого корневого массива для заполнения ссылками
+            // на подмассивы строк (в этот момент их еще нет!)
+            int[][] tableArray2 = new int[11][];
+            for (int i = 0; i < 11; i++) {
+                // j - номера колонок (ячеек в строке)
+                // создание одного пустого подмассива для заполнения данными текущей строки
+                // и сохранение ссылки на него в текущую ячейку (под текущим индексом i)
+                // ссылки на новый подмассив
+                int[] rowArray = new int[11]; // в текущей строке - 11 ячеек
+                tableArray2[i] = rowArray;
+                for (int j = 0; j < 11; j++) {
+                    // если номер строки - первый (индекс = 0) -
+                    // выводим номер колонки (ячейки)
+                    if (i == 0) {
+                        rowArray[j] = j;
+                    } else if (j == 0) {
+                        rowArray[j] = i;
+                    } else {
+                        rowArray[j] = i * j;
+                    }
+                }
+            }
+            
+            // вывод в консоль всего содержимого массива массивов для проверки
+            for(int[] rowArray : tableArray2) {
+                // получаем очередной подмассив
+                // перебор всех значений текущего подмассива
+                for(int value : rowArray) {
+                    // вывод текущего значения без перхода на следующую строку
+                    System.out.printf("%4d", value);
+                }
+                // когда все значения текущего подмассива выведены в одну строку -
+                // переходим на следующую
+                System.out.println();
+            }
         }
 
 }
