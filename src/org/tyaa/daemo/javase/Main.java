@@ -6,6 +6,8 @@
 package org.tyaa.daemo.javase;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
@@ -20,6 +22,16 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
+        
+        /* if (args.length == 2) {
+            String aString = args[0];
+            String bString = args[1];
+            if (aString.matches("^[0-9]{1,}$") && bString.matches("^[0-9]{1,}$")) {
+                System.out.println(Integer.valueOf(aString) + Integer.valueOf(bString));
+            } else {
+                System.out.println("Wrong input: must be two numbers!");
+            }
+        } */
 
         // primitive types (value types)
         /* byte b1 = 127; // -128
@@ -395,7 +407,7 @@ public class Main {
             // Table v2
             // создание пустого корневого массива для заполнения ссылками
             // на подмассивы строк (в этот момент их еще нет!)
-            int[][] tableArray2 = new int[11][];
+            /* int[][] tableArray2 = new int[11][];
             for (int i = 0; i < 11; i++) {
                 // j - номера колонок (ячеек в строке)
                 // создание одного пустого подмассива для заполнения данными текущей строки
@@ -428,7 +440,7 @@ public class Main {
                 // когда все значения текущего подмассива выведены в одну строку -
                 // переходим на следующую
                 System.out.println();
-            }
+            } */
             
             // используя двумерный массив значений типа char,
             // заполните его результатами игры в крестики-нолики с
@@ -437,6 +449,70 @@ public class Main {
             // 0XX
             // O O
             // и выведете в консоль вложенными циклами for-each (for)
+            
+            
+            /* Bubble Sort */
+            
+            /* Integer[] integers = {1, 3, -5, 0, 200};
+            // признак: упорядоченный ли массив?
+            // считаем, что нет
+            Boolean isOrdered = false;
+            // минимум один раз начинаем проверку на упорядоенность
+            do {
+                // предполагаем, что упорядочен, и переставлять нечего
+                isOrdered = true;
+                // проверяем, так ли это,
+                // проходя от начала до конца по массиву
+                for (int i = 0; i < integers.length - 1; i++) {
+                    // если текущий элемент меньше следующего -
+                    if (integers[i] < integers[i + 1]) {
+                        // переставляем местами элементы -
+                        // текущий и следующий
+                        Integer temporaryInteger = integers[i + 1];
+                        integers[i + 1] = integers[i];
+                        integers[i] = temporaryInteger;
+                        // заключаем, что массив был еще не упорядочен,
+                        // а значит, и после данных перестановок может
+                        // остаться неупорядоченным,
+                        // и требует следующей проверки
+                        isOrdered = false;
+                    }
+                }
+            } while (!isOrdered); // если хотя бы один раз при проходе массива
+            // из начала в конец пришлось переставить местами  два элемента -
+            // требуется новая проверка - упорядочен ли он теперь
+        
+            
+            for (int i = 0; i < integers.length; i++) {
+                System.out.println(integers[i]);
+            } */
+            
+            /* String s1 = "ABC";
+            String s2 = "XYZ";
+            // s1 is less than s2
+            System.out.println(s1.compareTo(s2) > 0); // if false - s1 is not greather than s2 */
+            
+            // strings[i].compareTo(strings[i] + 1) > 0
+            
+            // Задача
+            // скопировать и изменить алгоритм сортировки так,
+            // чтобы на входе у него был массив строк,
+            // а на выходе - тот же массив, но с упорядоченными строками
+            // (по алфавиту или обратно)
+            
+            /* String s = "Hello Java Strings!";
+            System.out.println(s.length()); */
+            
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Input file name then press Enter");
+            System.out.println(">");
+            String fileNameString = scanner.nextLine();
+            File file = new File(fileNameString + ".txt");
+            try (FileWriter fileWriter = new FileWriter(file)) {
+                fileWriter.append("Hello ");
+                fileWriter.append("Java");
+                fileWriter.append("!");
+            }
         }
 
 }
