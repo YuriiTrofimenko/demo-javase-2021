@@ -5,11 +5,10 @@
  */
 package org.tyaa.daemo.javase;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.channels.FileChannel;
 import java.util.Scanner;
 
 /**
@@ -502,8 +501,10 @@ public class Main {
             
             /* String s = "Hello Java Strings!";
             System.out.println(s.length()); */
-            
-            Scanner scanner = new Scanner(System.in);
+
+            /* Text Files */
+
+            /* Scanner scanner = new Scanner(System.in);
             System.out.println("Input file name then press Enter");
             System.out.println(">");
             String fileNameString = scanner.nextLine();
@@ -513,6 +514,68 @@ public class Main {
                 fileWriter.append("Java");
                 fileWriter.append("!");
             }
-        }
+            System.out.println("Result:");
+            try (BufferedReader bufferedReader =
+                         new BufferedReader(new FileReader(file))) {
+                bufferedReader.lines().forEach(System.out::println);
+            } */
 
+            /* Bin Files */
+            final byte INT_RATIO = 4;
+            final byte SHORT_RATIO = 2;
+            // final String FILE_NAME = "data.bin";
+            final String FILE_NAME = "10f";
+
+            /* int[] values = {100500, 0, 500};
+            try (DataOutputStream outputStream = new DataOutputStream(new FileOutputStream("data.bin"))) {
+                for (int i = 0; i < values.length; i++) {
+                    System.out.println(values[i]);
+                    outputStream.writeInt(values[i]);
+                }
+            } */
+            System.out.println("Result:");
+            /* try (DataInputStream inputStream = new DataInputStream(new FileInputStream(FILE_NAME))) {
+                final int availableBytes = inputStream.available();
+                for (int i = 0; i < availableBytes / INT_RATIO; i++) {
+                    System.out.println(inputStream.readInt());
+                }
+            } */
+
+        /* try (DataInputStream inputStream = new DataInputStream(new FileInputStream(FILE_NAME))) {
+            final int availableBytes = inputStream.available();
+            // System.out.println("***");
+            // System.out.println("***");
+            for (int i = 0; i < availableBytes / SHORT_RATIO; i++) {
+                System.out.println(inputStream.readShort());
+            }
+        } */
+        final int[] paramsArray = new int[66];
+        getParamsJ(FILE_NAME, paramsArray);
+        for (int i = 0; i < paramsArray.length; i++) {
+            System.out.println(paramsArray[i]);
+        }
+    }
+
+    private static void getParamsJ(String filePathString, int[] paramsArray) {
+        try (@SuppressWarnings("resource") FileChannel channel
+                     = new FileInputStream(filePathString + ".prm").getChannel()) {
+            int i_channels = 0;
+            ByteBuffer buffer =
+                    ByteBuffer.allocate(128 * 1024)
+                            .order(ByteOrder.nativeOrder());
+            while (channel.read(buffer) > 0) {
+                buffer.flip();
+                while (buffer.hasRemaining()) {
+                    paramsArray[i_channels] = buffer.getShort();
+                    i_channels++;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 }
