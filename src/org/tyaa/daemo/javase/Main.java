@@ -549,10 +549,46 @@ public class Main {
                 System.out.println(inputStream.readShort());
             }
         } */
-        final int[] paramsArray = new int[66];
+        
+        /* final int[] paramsArray = new int[66];
         getParamsJ(FILE_NAME, paramsArray);
         for (int i = 0; i < paramsArray.length; i++) {
             System.out.println(paramsArray[i]);
+        } */
+        
+        // String[] chars = {"XYZ", "ABC", "EFG"};
+        String[] strings = {"USA", "Poland", "Ukraine", "GB"};
+        // признак: упорядоченный ли массив?
+        // считаем, что нет
+        Boolean isOrdered = false;
+        // минимум один раз начинаем проверку на упорядоенность
+        do {
+            // предполагаем, что упорядочен, и переставлять нечего
+            isOrdered = true;
+            // проверяем, так ли это,
+            // проходя от начала до конца по массиву
+            for (int i = 0; i < strings.length - 1; i++) {
+                // если текущий элемент меньше следующего -
+                if (strings[i].compareTo(strings[i + 1]) < 0) {
+                    // переставляем местами элементы -
+                    // текущий и следующий
+                    String temporaryString = strings[i + 1];
+                    strings[i + 1] = strings[i];
+                    strings[i] = temporaryString;
+                    // заключаем, что массив был еще не упорядочен,
+                    // а значит, и после данных перестановок может
+                    // остаться неупорядоченным,
+                    // и требует следующей проверки
+                    isOrdered = false;
+                }
+            }
+        } while (!isOrdered); // если хотя бы один раз при проходе массива
+        // из начала в конец пришлось переставить местами  два элемента -
+        // требуется новая проверка - упорядочен ли он теперь
+
+
+        for (int i = 0; i < strings.length; i++) {
+            System.out.println(strings[i]);
         }
     }
 
