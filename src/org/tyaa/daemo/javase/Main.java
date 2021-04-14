@@ -9,6 +9,8 @@ import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -521,10 +523,10 @@ public class Main {
             } */
 
             /* Bin Files */
-            final byte INT_RATIO = 4;
-            final byte SHORT_RATIO = 2;
+            //final byte INT_RATIO = 4;
+            //final byte SHORT_RATIO = 2;
             // final String FILE_NAME = "data.bin";
-            final String FILE_NAME = "10f";
+            //final String FILE_NAME = "10f";
 
             /* int[] values = {100500, 0, 500};
             try (DataOutputStream outputStream = new DataOutputStream(new FileOutputStream("data.bin"))) {
@@ -533,7 +535,7 @@ public class Main {
                     outputStream.writeInt(values[i]);
                 }
             } */
-            System.out.println("Result:");
+            // System.out.println("Result:");
             /* try (DataInputStream inputStream = new DataInputStream(new FileInputStream(FILE_NAME))) {
                 final int availableBytes = inputStream.available();
                 for (int i = 0; i < availableBytes / INT_RATIO; i++) {
@@ -557,7 +559,7 @@ public class Main {
         } */
         
         // String[] chars = {"XYZ", "ABC", "EFG"};
-        String[] strings = {"USA", "Poland", "Ukraine", "GB"};
+        /* String[] strings = {"USA", "Poland", "Ukraine", "GB"};
         // признак: упорядоченный ли массив?
         // считаем, что нет
         Boolean isOrdered = false;
@@ -589,7 +591,113 @@ public class Main {
 
         for (int i = 0; i < strings.length; i++) {
             System.out.println(strings[i]);
+        } */
+        
+        /* for (int i = 0; i < 10; i++) {
+            System.out.println(i);
+        } */
+        /* for (int i = 0; i < 10;) {
+            System.out.println(i);
+        } */
+        /* for (int i = 0;;) {
+            System.out.println(i);
+        } */
+        /* int i = 0;
+        for (;i < 10;) {
+            System.out.println(i);
+            i += 2;
+        } */
+        /* int i = 0;
+        for (;;) {
+            System.out.println(i);
+            i += 2;
+            if (i == 10) {
+                break;
+            }
+        } */
+        /* int i = 0;
+        for (;;) {
+            if (i % 2 != 0) {
+                System.out.println(i);
+            }
+            i++;
+            if (i == 10) {
+                break;
+            }
+        } */
+        
+        /* int i = 0;
+        MAIN_FOR : for (int j = 0; j < 3; j++) {
+            for (;;) {
+                //if (i % 2 != 0) {
+                //    System.out.println(i);
+                //}
+                // если во вложенном цикле номер шага == 10
+                if (i == 10) {
+                    // выход из вложенного цикла
+                    break;
+                }
+                // если во внешнем цикле номер шага == 1, при этом
+                // во вложенном цикле номер шага == 5
+                if (j == 1 && i == 5) {
+                    // break;
+                    // break MAIN_FOR;
+                    // завершаем работу программы
+                    System.exit(0);
+                }
+                // иначе - если номер вложенного цикла - четное число -
+                if (i % 2 == 0) {
+                    // увеличиваем номер шага вложенного цикла на 1
+                    i++;
+                    // пропускаем шаг, переходим на начало вложенного цикла
+                    // для выполнения следующего шага
+                    continue;
+                }
+                System.out.println(i);
+                i++;
+            }
+            // после выполнения вложенного цикла каждый раз сбрасывать
+            // счетчик его шагов в 0
+            i = 0;
+            System.out.println("***");
+        } */
+        
+        ArrayList<Integer> integers = new ArrayList<>();
+        System.out.println("Введите значение а: ");
+        Integer a = null;
+        Integer b = null;
+        try {
+            a = new Scanner(System.in).nextInt();
+            b = Integer.valueOf(args[2]);
+        } catch (InputMismatchException ex) {
+            System.err.println("a - не целое число");
+        }  catch (ArrayIndexOutOfBoundsException ex) {
+            System.err.println("не передан третий параметр при запуске программы");
+        } catch (NumberFormatException ex) {
+            System.err.println("b - не целое число");
+        } catch (Exception ex) {
+            System.err.println("неизвестная ошибка");
         }
+        if (a != null && b != null && a > b) {
+            // Integer limit = a - b;
+            for (Integer i = b; i <= a; i++) {
+                if (integers.size() > 150) {
+                    break;
+                }
+                integers.add(i);
+            }
+            System.out.println("Результат: ");
+            System.out.println("l = " + String.valueOf(a).length());
+            for (int i = 0; i < integers.size(); i++) {
+                System.out.printf("%" + (String.valueOf(a).length() + 1) + "d", integers.get(i));
+                // System.out.println("debug: " + i + " -> " + i % 15);
+                if (i != 0 && (i + 1) % 15 == 0) {
+                    System.out.println();
+                }
+            }
+        }
+        
+        // System.out.println("The End.");
     }
 
     private static void getParamsJ(String filePathString, int[] paramsArray) {
